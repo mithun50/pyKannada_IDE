@@ -1,0 +1,215 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #1f1f1f;
+    width: 95%;
+    max-width: 3000px;
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    padding: 40px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    font-size: 20px;
+}
+
+h1 {
+    color: #00d2d2;
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+h2 {
+    color: #f4a261;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.button-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    background-color: #00d2d2;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    margin: 10px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #00a6a6;
+    transform: scale(1.05);
+}
+
+button:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: 0 0 10px #f4a261;
+}
+
+/* CodeMirror Styles (Replaces textarea) */
+.CodeMirror {
+    width: 100% !important;
+    height: 400px !important; /* Match the height of the output */
+    border: none;
+    background-color: #272727;
+    color: #dcdcdc;
+    font-size: 23px;
+    font-family: 'Courier New', Courier, monospace;
+    border-radius: 10px;
+    resize: none;
+    margin-top: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    direction: ltr;
+}
+
+/* Output Section */
+#output {
+    background-color: #2d2d2d;
+    color: #fff;
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 23px;
+    border-radius: 10px;
+    white-space: pre-wrap;
+    margin-top: 30px;
+    height: 400px; /* Match the editor height */
+    overflow-y: auto;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    text-align: left;
+    direction: ltr;
+}
+
+/* Footer Styles */
+footer {
+    padding: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #f4f4f4;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    border-top: 1px solid #333;
+}
+
+footer a {
+    color: #00d2d2;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Dark Mode & Light Mode */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.light-mode {
+    background-color: #f4f4f4;
+    color: #333333;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .CodeMirror {
+        height: 300px; /* Adjust for smaller screens */
+        font-size: 18px;
+    }
+
+    #output {
+        height: 300px; /* Adjust for smaller screens */
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 12px 25px;
+    }
+
+    .button-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .CodeMirror {
+        height: 250px; /* Adjust for mobile screens */
+        font-size: 14px;
+    }
+
+    #output {
+        height: 250px; /* Adjust for mobile screens */
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+
+    footer {
+        font-size: 0.8rem;
+    }
+}
