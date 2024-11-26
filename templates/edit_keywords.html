@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyKannada: Edit Kannada to Python Keywords</title>
+
+    <!-- Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+         <h1>pyKannada</h1>
+        <h1>Edit Kannada to Python Keywords</h1>
+
+        <!-- Back to Main Page Button -->
+        <a href="/"><button>Return to Home</button></a>
+
+        <!-- Form for Adding or Deleting Keywords -->
+        <form method="POST">
+            <label for="action">Action:</label>
+            <select name="action" id="action">
+                <option value="add">Add</option>
+                <option value="delete">Delete</option>
+            </select>
+
+            <label for="kannada">Kannada Keyword:</label>
+            <input type="text" id="kannada" name="kannada" required>
+
+            <label for="python">Python Keyword (for Add):</label>
+            <input type="text" id="python" name="python">
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <!-- Current Keywords Section -->
+        <h2>Current Keywords</h2>
+        <ul>
+            {% for kannada, python in keywords.items() %}
+                <li>{{ kannada }} → {{ python }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p><strong>Developed by:</strong> <a href="https://instagram.com/mithun.gowda.b">MithunGowda.B</a> & <a href="https://www.instagram.com/appu.__.kannadiga">Manvanth</a></p>
+        <p><strong>Version:</strong> 1.0.0 | <strong>Contact:</strong> <a href="mailto:mithungowda.b7411@gmail.com">mithungowda.b7411@gmail.com</a> | <a href="mailto:appuka1431@gmail.com">appuka1431@gmail.com</a></p>
+    </footer>
+
+</body>
+</html>

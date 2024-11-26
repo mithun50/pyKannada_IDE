@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pyKannada IDE</title>
+
+    <!-- CodeMirror Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/theme/monokai.min.css">
+
+    <!-- CodeMirror Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/edit/closebrackets.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.10/addon/edit/matchbrackets.min.js"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Inconsolata:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icon Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>pyKannada IDE</h1>
+
+        <!-- Button Container -->
+        <div class="button-container">
+            <button id="run_button"><i class="fas fa-play"></i> Run</button>
+            <button id="save_button"><i class="fas fa-save"></i> Save</button>
+            <button id="open_button"><i class="fas fa-folder-open"></i> Open</button>
+            <a href="/edit_keywords">
+                <button><i class="fas fa-cogs"></i> Edit Keywords</button>
+            </a>
+
+        </div>
+
+        <!-- Code Editor -->
+        <textarea id="kannada_code"></textarea>
+
+        <!-- Output -->
+        <div id="output">Output will be displayed here...</div>
+
+        <!-- File Input (hidden) -->
+        <input type="file" id="file_input" style="display:none;" />
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p><strong>Developed by:</strong> <a href="https://instagram.com/mithun.gowda.b">MithunGowda.B</a> & <a href="https://www.instagram.com/appu.__.kannadiga">Manvanth</a></p>
+        <p><strong>Version:</strong> 1.0.0 | <strong>Contact:</strong> <a href="mailto:mithungowda.b7411@gmail.com">mithungowda.b7411@gmail.com</a> | <a href="mailto:appuka1431@gmail.com">appuka1431@gmail.com</a></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Initialize CodeMirror editor
+            var editor = CodeMirror.fromTextArea(document.getElementById("kannada_code"), {
+                mode: "python",
+                theme: "monokai",
+                lineNumbers: true,
+                styleActiveLine: true,
+                matchBrackets: true,
+                autoCloseBrackets: true,
+                indentUnit: 4,
+                tabSize: 4,
+                indentWithTabs: false,
+                extraKeys: {
+                    Tab: function(cm) {
+                        cm.replaceSelection("    ", "end");
+                    }
+                }
+            });
+
+            // Set cursor to the start of the editor
+            editor.setCursor(0, 0);
+
+            // Run Code
+            $('#run_button').click(function() {
+                var kannada_code = editor.getValue();
+                $('#output').text('Running...');
+                $.post('/run_code', { kannada_code: kannada_code }, function(response) {
+                    if (response.output) {
+                        $('#output').text(response.output);
+                    } else if (response.error) {
+                        $('#output').text('Error: ' + response.error);
+                    }
+                });
+            });
+
+            // Save File
+            $('#save_button').click(function() {
+                var filename = prompt('Enter filename:', 'script.py');
+                var code = editor.getValue();
+                if (filename) {
+                    $.post('/save_file', { filename: filename, code: code }, function(response) {
+                        alert(response.success || response.error);
+                    });
+                }
+            });
+
+            // Open File
+            $('#open_button').click(function() {
+                $('#file_input').click();
+            });
+
+            $('#file_input').change(function(event) {
+                var file = event.target.files[0];
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    editor.setValue(e.target.result);
+                };
+                reader.readAsText(file);
+            });
+
+            // Theme Toggle
+            $('#theme_toggle').click(function() {
+                $('body').toggleClass('dark-mode light-mode');
+                editor.setOption("theme", $('body').hasClass('dark-mode') ? "monokai" : "default");
+            });
+        });
+    </script>
+</body>
+
+</html>
