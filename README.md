@@ -168,8 +168,8 @@ We appreciate all contributions!
 
 For the latest updates, tips, and more, don’t forget to follow us on Instagram:
 
-- **Mithun Gowda B**: [@mithun_gowda](https://instagram.com/mithun_gowda)
-- **Manvanth**: [@manvanth_dev](https://instagram.com/manvanth_dev)
+- **Mithun Gowda B**: [@mithun_gowda](https://instagram.com/mithun.gowda.b)
+- **Manvanth**: [@manvanth](https://www.instagram.com/_.appu_kannadiga)
 
 Stay connected, stay updated!
 
