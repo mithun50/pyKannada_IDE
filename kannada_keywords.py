@@ -32,5 +32,5 @@ kannada_keywords = {
     "ಲ್ಯಾಂಬ್ಡಾ": "lambda",
     "ಹಳಿಸು": "del",
     "ಸಮಗ್ರ": "global",
-    "random": "rm",
+    
 }
